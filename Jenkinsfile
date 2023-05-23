@@ -1,6 +1,6 @@
 node{
    stage('SCM Checkout'){
-     git 'https://github.com/damodaranj/my-app.git'
+     git 'https://github.com/Skrishnan586/my-app.git'
    }
    stage('maven-buildstage'){
 
@@ -15,13 +15,13 @@ node{
 	        }
 	    }
    stage('Build Docker Image'){
-   sh 'docker build -t saidamo/myweb:0.0.2 .'
+   sh 'docker build -t harikrishnan586/myweb:0.0.2 .'
    }
    stage('Docker Image Push'){
    withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
    sh "docker login -u saidamo -p ${dockerPassword}"
     }
-   sh 'docker push saidamo/myweb:0.0.2'
+   sh 'docker push harikrishnan586/myweb:0.0.2'
    }
    stage('Nexus Image Push'){
    sh "docker login -u admin -p admin123 13.234.37.146:8083"
